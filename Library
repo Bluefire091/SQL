@@ -18,3 +18,31 @@ ALTER TABLE users
 ADD COLUMN password TEXT;
 ALTER TABLE users
 DROP COLUMN is_admin
+
+
+-- 3. CREATE TABLE W/ CONSTRAINTS (a constraint is a rule applied to a column or a table to enforce data integrity and ensure the accuracy and reliability of the data)
+CREATE TABLE users (
+  id INTEGER PRIMARY KEY,
+  name TEXT NOT NULL,
+  age INTEGER NOT NULL,
+  country_code TEXT NOT NULL,
+  username TEXT UNIQUE NOT NULL,
+  password TEXT NOT NULL,
+  is_admin BOOLEAN
+);
+
+
+-- 4. Foreign Key -- 
+CREATE table countries(code TEXT PRIMARY KEY, name TEXT);
+
+CREATE TABLE users (
+  id INTEGER PRIMARY KEY,
+  name TEXT NOT NULL,
+  age INTEGER,
+  country_code TEXT NOT NULL,
+  username TEXT ,
+  password TEXT,
+  is_admin BOOLEAN,
+  FOREIGN KEY (country_code)
+  REFERENCES countries(code)
+)
